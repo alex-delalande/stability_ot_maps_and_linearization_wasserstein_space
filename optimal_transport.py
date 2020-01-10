@@ -119,7 +119,7 @@ class semi_discrete_ot:
             self.potentials[c] = newton_ot(self.domain, sample, nu, psi0=None, verbose=False,
                                            maxerr=maxerr, maxiter=maxiter, t_init=t_init)
             # build the *discretized* transport plan associated to these potentials
-            pd = PowerDiagram(point_clouds[cloud_keys[c]], -self.potentials[c], self.domain)
+            pd = PowerDiagram(sample, -self.potentials[c], self.domain)
             img = pd.image_integrals([0, 0], [1, 1], [self.grid_size, self.grid_size])
             img /= np.expand_dims(img[ :, :, 2], -1)
             if rescaling:
