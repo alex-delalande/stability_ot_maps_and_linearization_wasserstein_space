@@ -6,7 +6,7 @@
 
 import numpy as np
 
-from optimal_transport import semi_discrete_ot
+from src.optimal_transport import semi_discrete_ot
 
 class monge_barycenter:
     """

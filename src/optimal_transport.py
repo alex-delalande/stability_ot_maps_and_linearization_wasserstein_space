@@ -11,7 +11,7 @@ from scipy.sparse.linalg import spsolve
 
 from pysdot import PowerDiagram
 
-from utils import make_square, laguerre_areas
+from src.utils import make_square, laguerre_areas
 
 
 # Newton's algorithm
