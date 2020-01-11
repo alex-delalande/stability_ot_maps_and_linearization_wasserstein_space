@@ -11,12 +11,12 @@ The dependencies to run these experiments are listed in `requirements.txt`. In p
 ## Notebooks
 
 ### [`distance_approximation.ipynb`](https://github.com/AlxDel/stability_ot_maps_and_linearization_wassertein_space/blob/master/distance_approximation.ipynb)
-Comparison of the $2$-Wasserstein distance and the distance between Monge embeddings.
+Comparison of the 2-Wasserstein distance and the distance between Monge embeddings.
 
 <img src="assets/distance_approx.png" alt="drawing" width="700"/>
 
 ### `sampling_approximation.ipynb`
-Observing the accuracy of the estimation of Monge maps from finite samples in function of the sample sizes.
+Observing the accuracy of the estimation of Monge maps from finite samples in function of the sample size.
 
 TODO
 
