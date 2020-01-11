@@ -28,7 +28,7 @@ Point cloud interpolation using the approximate Wasserstein barycenter deduced f
 ### [`mnist_clustering.ipynb`](https://github.com/AlxDel/stability_ot_maps_and_linearization_wassertein_space/blob/master/mnist_clustering.ipynb)
 Clustering the MNIST training set with KMeans on Monge embeddings.
 
-TODO
+<img src="assets/mnist_clustering.png" alt="drawing" width="700"/>
 
 ## Citing this work
 
