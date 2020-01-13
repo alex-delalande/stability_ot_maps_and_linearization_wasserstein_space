@@ -2,7 +2,7 @@
 
 Experiments for the paper [*Quantitative Stability of Optimal Transport Maps and Linearization of the 2-Wasserstein Space*](https://arxiv.org/abs/1910.05954), [Q. Mérigot](http://quentin.mrgt.fr/), A. Delalande, [F. Chazal](https://geometrica.saclay.inria.fr/team/Fred.Chazal/), to appear in AISTATS 2020.
 
-This work was also presented at the [NeurIPS 2019 'Optimal Transport for Machine Learning' Workshop](https://sites.google.com/view/otml2019/).
+This work was also presented at the [NeurIPS 2019 "Optimal Transport for Machine Learning" Workshop](https://sites.google.com/view/otml2019/).
 
 ## Dependencies
 The dependencies to run these experiments are listed in `requirements.txt`. In particular, [pysdot](https://pypi.org/project/pysdot/) was used to compute the (semi-discrete) Monge maps. This package can be installed using:
@@ -20,8 +20,8 @@ Comparison of the 2-Wasserstein distance and the distance between Monge embeddin
 ### [`sampling_approximation.ipynb`](https://github.com/AlxDel/stability_ot_maps_and_linearization_wassertein_space/blob/master/sampling_approximation.ipynb)
 Observing the accuracy of the estimation of Monge maps from finite samples in function of the sample size.
 
-<img src="assets/sampling_approximation_1.png" alt="drawing" width="700"/>
-<img src="assets/sampling_approximation_2.png" alt="drawing" width="700"/>
+<img src="assets/sampling_approximation_1.png" alt="drawing" width="600"/>
+<img src="assets/sampling_approximation_2.png" alt="drawing" width="600"/>
 
 ###  [`barycenter_interpolation.ipynb`](https://github.com/AlxDel/stability_ot_maps_and_linearization_wassertein_space/blob/master/barycenter_interpolation.ipynb)
 Point cloud interpolation using the approximate Wasserstein barycenter deduced from Monge embeddings.
