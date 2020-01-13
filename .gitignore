@@ -57,7 +57,6 @@ docs/_build/
 target/
 
 *.pdf
-*.png
 
 .ipynb_checkpoints
 */.ipynb_checkpoints/*
