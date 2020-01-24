@@ -3,7 +3,6 @@
 
 # Optimal Transport methods
 # Semi-discrete OT with Newton's algorithm (see arXiv:1603.05579) with pysdot
-# Discrete OT with Sinkhorn's algorithm (see arXiv:1306.0895)
 
 
 import numpy as np
@@ -127,68 +126,3 @@ class semi_discrete_ot:
                 img[:, :, :2] = (sample_max - sample_min) * img[:, :, :2] + sample_min 
             # save transport plan            
             self.transport_plans[c] = img[:, :, :2].flatten()
-
-
-# class for discrete OT
-class Stabilized_Sinkhorn:
-    """
-    Class for computing discrete transport plans of discrete OT with 
-    stabilized Sinkhorn (with log_sum_exp trick on dual ascent).
-    """
-    def __init__(self, C, a, b, epsilon, max_it=1000, *args, **kwargs):
-        """
-        Args:
-            C (np.array): Cost matrix
-            a (np.array): source weights
-            b (np.array): target weights
-            epsilon (float): Entropic regularization parameter
-            max_it (int): maximal number of iterations for Sinkhorn
-        """
-        self.C = C
-        self.a = a
-        self.b = b
-        self.epsilon = epsilon
-        self.max_it = max_it
-        self.g = np.zeros(len(b))
-        self.f = None
-        self.a_err = []
-        self.b_err = []
-        self.primal_objective = []
-        self.dual_objective = []
-        self.dual_gap = []
-        
-    def solve(self, decay_epsilon=250, *args, **kwargs):
-        """
-        Performs max_it iterations of stabilized Sinkhorn algorithm
-        """
-        conv = False
-        it = 0
-        while not conv:
-            # step 1
-            Mf = (self.C - self.g) 
-            Mf_min = np.min(Mf, axis=1)
-            Mf = (Mf.T - Mf_min).T 
-            self.f = self.epsilon * np.log(self.a) \
-                     + Mf_min \
-                     - self.epsilon * np.log(np.sum(np.exp(-Mf/self.epsilon), axis=1))
-            self.P = np.exp((self.f.reshape(-1,1) + self.g.reshape(1,-1) - self.C)/self.epsilon)
-            self.b_err.append(np.sum( np.abs(self.b - np.sum(self.P, axis=0)) ))
-            # step 2
-            Mg = (self.C.T - self.f).T 
-            Mg_min = np.min(Mg, axis=0)
-            Mg = (Mg - Mg_min)
-            self.g = self.epsilon * np.log(self.b) \
-                     + Mg_min \
-                     - self.epsilon * np.log(np.sum(np.exp(-Mg/self.epsilon), axis=0))
-            self.P = np.exp((self.f.reshape(-1,1) + self.g.reshape(1,-1) - self.C)/self.epsilon)
-            self.a_err.append(np.sum( np.abs(self.a - np.sum(self.P, axis=1)) ))
-            # decay of epsilon
-            if (it%decay_epsilon)==0:
-                self.epsilon = self.epsilon / 2
-            # dual objective (to be maximized)
-            self.dual_objective.append(np.sum(self.f * self.a) + np.sum(self.g * self.b) \
-                                       - self.epsilon * np.sum(np.exp((self.f.reshape(-1,1) + self.g.reshape(1,-1) - self.C)/self.epsilon)) )
-            # total updates
-            it += 1
-            conv = (it>self.max_it)
-        
